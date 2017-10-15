@@ -12,17 +12,17 @@ public class ParseableRawGroup implements Parseable {
 
     @Override
     public String parse(String source) {
-        Map<String, ParseableRawGroup> map = rawGroup.getMap();
+        Map<String, ParseableRawField> map = rawGroup.getMap();
 
         String temp = source;
-        for (ParseableRawGroup group : map.values()) {
+        for (ParseableRawField group : map.values()) {
             temp = group.parse(temp);
         }
 
         return temp;
     }
 
-    public Map<String, ParseableRawGroup> getMap() {
-        return rawGroup.getMap();
+    public String getValue(String key) {
+        return rawGroup.getMap().get(key).getContents();
     }
 }

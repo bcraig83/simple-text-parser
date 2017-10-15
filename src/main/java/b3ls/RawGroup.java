@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class RawGroup {
 
-    private Map<String, ParseableRawGroup> groupMap = new LinkedHashMap<>();
+    private Map<String, ParseableRawField> groupMap = new LinkedHashMap<>();
 
-    public void addRawGroupParser(String name, ParseableRawGroup parser) {
-        groupMap.put(name, parser);
+    public void addRawFieldParser(ParseableRawField parser) {
+        groupMap.put(parser.getName(), parser);
     }
 
-    public Map<String, ParseableRawGroup> getMap() {
+    public Map<String, ParseableRawField> getMap() {
         return groupMap;
     }
 }
