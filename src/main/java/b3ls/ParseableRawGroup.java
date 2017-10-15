@@ -25,4 +25,8 @@ public class ParseableRawGroup implements Parseable {
     public String getValue(String key) {
         return rawGroup.getMap().get(key).getContents();
     }
+
+    public String getName() {
+        return rawGroup.getName();
+    }
 }

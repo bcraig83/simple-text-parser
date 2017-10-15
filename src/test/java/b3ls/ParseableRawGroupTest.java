@@ -8,7 +8,7 @@ public class ParseableRawGroupTest {
     @Test
     public void shouldParseSimpleGroup() {
 
-        RawGroup rawGroup = new RawGroup();
+        RawGroup rawGroup = new RawGroup("Group1");
         RawField carrierCode = new RawField(2, "CarrierCode");
         RawField flightNumber = new RawField(4, "FlightNumber");
 
