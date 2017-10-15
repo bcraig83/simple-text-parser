@@ -2,7 +2,7 @@ package b3ls;
 
 import java.util.Map;
 
-public class ParseableRawGroup implements Parseable, RawGroup {
+public class ParseableRawGroup implements Parseable {
 
     private RawGroup rawGroup;
 
@@ -22,12 +22,6 @@ public class ParseableRawGroup implements Parseable, RawGroup {
         return temp;
     }
 
-    @Override
-    public void addRawGroupParser(String name, ParseableRawGroup parser) {
-        rawGroup.addRawGroupParser(name, parser);
-    }
-
-    @Override
     public Map<String, ParseableRawGroup> getMap() {
         return rawGroup.getMap();
     }

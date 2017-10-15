@@ -1,11 +1,17 @@
 package b3ls;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-public interface RawGroup {
+public class RawGroup {
 
-    public void addRawGroupParser(String name, ParseableRawGroup parser);
+    private Map<String, ParseableRawGroup> groupMap = new LinkedHashMap<>();
 
-    public Map<String, ParseableRawGroup> getMap();
+    public void addRawGroupParser(String name, ParseableRawGroup parser) {
+        groupMap.put(name, parser);
+    }
 
+    public Map<String, ParseableRawGroup> getMap() {
+        return groupMap;
+    }
 }

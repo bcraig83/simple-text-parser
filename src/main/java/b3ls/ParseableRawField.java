@@ -1,6 +1,6 @@
 package b3ls;
 
-public class ParseableRawField implements Parseable, RawField {
+public class ParseableRawField implements Parseable {
 
     private RawField rawField;
 
@@ -10,26 +10,19 @@ public class ParseableRawField implements Parseable, RawField {
 
     @Override
     public String parse(String source) {
-        return null;
+        int amountToConsume = rawField.getSize();
+        rawField.setContents(source.substring(0, amountToConsume));
+        return source.substring(amountToConsume, source.length());
     }
 
-    @Override
-    public void setSize(int size) {
-        rawField.setSize(size);
-    }
 
-    @Override
     public String getName() {
         return rawField.getName();
     }
 
-    @Override
-    public void setName(String name) {
-        rawField.setName(name);
-    }
 
-    @Override
     public String getContents() {
         return rawField.getContents();
     }
+
 }

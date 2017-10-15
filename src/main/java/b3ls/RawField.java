@@ -1,11 +1,31 @@
 package b3ls;
 
-public interface RawField {
-    void setSize(int size);
+public class RawField {
+    private int size;
+    private String name;
+    private String contents;
 
-    String getName();
+    // private String regexPattern; (will come eventually)
+    // protected String errorMessage; (will be filled out if there are any problems)
 
-    void setName(String name);
+    public RawField(int size, String name) {
+        this.size = size;
+        this.name = name;
+    }
 
-    String getContents();
+    public int getSize() {
+        return size;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getContents() {
+        return contents;
+    }
+
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
 }
