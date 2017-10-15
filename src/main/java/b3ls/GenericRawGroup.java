@@ -12,7 +12,7 @@ public class GenericRawGroup implements RawGroup {
     }
 
     @Override
-    public ParseableRawGroup getRawParserGroup(String name) {
-        return groupMap.get(name);
+    public Map<String, ParseableRawGroup> getMap() {
+        return groupMap;
     }
 }

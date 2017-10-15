@@ -1,5 +1,7 @@
 package b3ls;
 
+import java.util.Map;
+
 public class ParseableRawGroup implements Parseable, RawGroup {
 
     private RawGroup rawGroup;
@@ -10,7 +12,14 @@ public class ParseableRawGroup implements Parseable, RawGroup {
 
     @Override
     public String parse(String source) {
-        return null;
+        Map<String, ParseableRawGroup> map = rawGroup.getMap();
+
+        String temp = source;
+        for (ParseableRawGroup group : map.values()) {
+            temp = group.parse(temp);
+        }
+
+        return temp;
     }
 
     @Override
@@ -19,7 +28,7 @@ public class ParseableRawGroup implements Parseable, RawGroup {
     }
 
     @Override
-    public ParseableRawGroup getRawParserGroup(String name) {
-        return rawGroup.getRawParserGroup(name);
+    public Map<String, ParseableRawGroup> getMap() {
+        return rawGroup.getMap();
     }
 }

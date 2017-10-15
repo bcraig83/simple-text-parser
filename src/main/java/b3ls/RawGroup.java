@@ -1,8 +1,11 @@
 package b3ls;
 
+import java.util.Map;
+
 public interface RawGroup {
 
     public void addRawGroupParser(String name, ParseableRawGroup parser);
 
-    public ParseableRawGroup getRawParserGroup(String name);
+    public Map<String, ParseableRawGroup> getMap();
+
 }
