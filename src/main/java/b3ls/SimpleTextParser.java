@@ -22,4 +22,8 @@ public class SimpleTextParser implements Parseable {
 
         return temp;
     }
+
+    public String getItem(String groupName, String itemName) {
+        return map.get(groupName).getValue(itemName);
+    }
 }

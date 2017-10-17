@@ -28,6 +28,17 @@ public class SimpleTextParserTest {
         String result = parser.parse("AC1213FRAYUL");
         Assert.assertEquals("", result);
 
+        String carrier = parser.getItem("FlightInfo", "Carrier");
+        Assert.assertEquals("AC", carrier);
+
+        String flightNumber = parser.getItem("FlightInfo", "FlightNumber");
+        Assert.assertEquals("1213", flightNumber);
+
+        String departure = parser.getItem("FlightInfo", "Departure");
+        Assert.assertEquals("FRA", departure);
+
+        String arrival = parser.getItem("FlightInfo", "Arrival");
+        Assert.assertEquals("YUL", arrival);
     }
 
 }
