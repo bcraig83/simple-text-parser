@@ -12,7 +12,7 @@ public class SimpleTextParser implements Parseable {
         map.put(parser.getName(), parser);
     }
 
-    @Override
+
     public String parse(String source) {
         String temp = source;
 

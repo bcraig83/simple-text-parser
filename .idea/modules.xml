@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/simpleTextParser.iml" filepath="$PROJECT_DIR$/.idea/modules/simpleTextParser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/simpleTextParser_main.iml" filepath="$PROJECT_DIR$/.idea/modules/simpleTextParser_main.iml" group="simpleTextParser" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/simpleTextParser_test.iml" filepath="$PROJECT_DIR$/.idea/modules/simpleTextParser_test.iml" group="simpleTextParser" />
+    </modules>
+  </component>
+</project>
