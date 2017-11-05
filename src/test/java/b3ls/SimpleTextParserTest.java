@@ -117,4 +117,21 @@ public class SimpleTextParserTest {
         Assert.assertEquals("Austria   ", workCountry);
 
     }
+
+    // #1
+    @Test
+    public void shouldHandleCallToGetNonExistingField() {
+        RawGroup rawGroup = new RawGroup("FlightInfo");
+        rawGroup.addRawFieldParser(new ParseableRawField(new RawField(2, "AirlineDesignatorOfBoardingPassIssuer")));
+
+        SimpleTextParser parser = new SimpleTextParser();
+        parser.addRawGroupParser(new ParseableRawGroup(rawGroup));
+
+        String result = parser.parse("AC1213FRAYUL");
+        Assert.assertEquals("1213FRAYUL", result);
+
+
+        String resultString = parser.getItem("FlightInfo", "AirlineDesignatorOfBoardingPass");
+    }
+
 }
