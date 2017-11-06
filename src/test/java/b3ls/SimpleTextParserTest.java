@@ -132,6 +132,7 @@ public class SimpleTextParserTest {
 
 
         String resultString = parser.getItem("FlightInfo", "AirlineDesignatorOfBoardingPass");
-    }
 
+        Assert.assertEquals("", resultString);
+    }
 }
