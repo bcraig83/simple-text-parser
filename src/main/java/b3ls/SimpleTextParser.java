@@ -8,7 +8,7 @@ public class SimpleTextParser implements Parseable {
     private Map<String, ParseableRawGroup> map = new LinkedHashMap<>();
 
 
-    public void addRawGroupParser(ParseableRawGroup parser) {
+    void addRawGroupParser(ParseableRawGroup parser) {
         map.put(parser.getName(), parser);
     }
 
@@ -23,7 +23,15 @@ public class SimpleTextParser implements Parseable {
         return temp;
     }
 
-    public String getItem(String groupName, String itemName) {
-        return map.get(groupName).getValue(itemName);
+    String getItem(String groupName, String itemName) {
+        String result = "";
+
+        try {
+            result = map.get(groupName).getValue(itemName);
+        } catch (RawFieldDoesNotExistException e) {
+            System.out.println("");
+        }
+
+        return result;
     }
 }

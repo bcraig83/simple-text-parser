@@ -6,7 +6,7 @@ public class ParseableRawGroup implements Parseable {
 
     private RawGroup rawGroup;
 
-    public ParseableRawGroup(RawGroup rawGroup) {
+    ParseableRawGroup(RawGroup rawGroup) {
         this.rawGroup = rawGroup;
     }
 
@@ -22,11 +22,17 @@ public class ParseableRawGroup implements Parseable {
         return temp;
     }
 
-    public String getValue(String key) {
-        return rawGroup.getMap().get(key).getContents();
+    String getValue(String key) throws RawFieldDoesNotExistException {
+        ParseableRawField rawField = rawGroup.getMap().get(key);
+
+        if (rawField == null) {
+            throw new RawFieldDoesNotExistException();
+        }
+
+        return rawField.getContents();
     }
 
-    public String getName() {
+    String getName() {
         return rawGroup.getName();
     }
 }

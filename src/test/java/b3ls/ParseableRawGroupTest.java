@@ -6,7 +6,7 @@ import org.junit.Test;
 public class ParseableRawGroupTest {
 
     @Test
-    public void shouldParseSimpleGroup() {
+    public void shouldParseSimpleGroup() throws RawFieldDoesNotExistException {
 
         RawGroup rawGroup = new RawGroup("Group1");
         RawField carrierCode = new RawField(2, "CarrierCode");
