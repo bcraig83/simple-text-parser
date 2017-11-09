@@ -33,7 +33,7 @@ public class SimpleTextParser implements Parseable {
         return result;
     }
 
-    int getGroupSize(String passenger) {
+    int getGroupSize(String groupName) {
         return 0;
     }
 }
