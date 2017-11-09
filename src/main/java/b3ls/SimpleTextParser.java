@@ -7,11 +7,9 @@ public class SimpleTextParser implements Parseable {
 
     private Map<String, ParseableRawGroup> map = new LinkedHashMap<>();
 
-
     void addRawGroupParser(ParseableRawGroup parser) {
         map.put(parser.getName(), parser);
     }
-
 
     public String parse(String source) {
         String temp = source;
@@ -33,5 +31,9 @@ public class SimpleTextParser implements Parseable {
         }
 
         return result;
+    }
+
+    int getGroupSize(String passenger) {
+        return 0;
     }
 }
