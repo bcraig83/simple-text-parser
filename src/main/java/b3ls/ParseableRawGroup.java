@@ -35,4 +35,8 @@ public class ParseableRawGroup implements Parseable {
     String getName() {
         return rawGroup.getName();
     }
+
+    public int getSize() {
+        return rawGroup.getSize();
+    }
 }

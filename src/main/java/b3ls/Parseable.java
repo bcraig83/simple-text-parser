@@ -1,5 +1,5 @@
 package b3ls;
 
 public interface Parseable {
-    String parse(String source);
+    String parse(String source) throws InvalidRawStringException;
 }
