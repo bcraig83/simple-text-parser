@@ -34,6 +34,12 @@ public class SimpleTextParser implements Parseable {
     }
 
     int getGroupSize(String groupName) {
-        return 0;
+        int size = 0;
+
+        for (ParseableRawGroup group : map.values()) {
+            size += group.getSize();
+        }
+
+        return size;
     }
 }

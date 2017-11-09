@@ -23,4 +23,15 @@ public class RawGroup {
     public String getName() {
         return name;
     }
+
+    public int getSize() {
+
+        int size = 0;
+
+        for (ParseableRawField field : map.values()) {
+            size += field.getSize();
+        }
+
+        return size;
+    }
 }

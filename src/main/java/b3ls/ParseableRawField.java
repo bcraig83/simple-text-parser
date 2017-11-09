@@ -25,4 +25,8 @@ public class ParseableRawField implements Parseable {
         return rawField.getContents();
     }
 
+    public int getSize() {
+        return rawField.getSize();
+    }
+
 }
