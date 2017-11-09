@@ -11,7 +11,12 @@ public class SimpleTextParser implements Parseable {
         map.put(parser.getName(), parser);
     }
 
-    public String parse(String source) {
+    public String parse(String source) throws InvalidRawStringException {
+
+        if (source.length() < this.getExpectedSize()) {
+            throw new InvalidRawStringException();
+        }
+
         String temp = source;
 
         for (ParseableRawGroup group : map.values()) {
@@ -33,7 +38,7 @@ public class SimpleTextParser implements Parseable {
         return result;
     }
 
-    int getGroupSize() {
+    private int getExpectedSize() {
         int size = 0;
 
         for (ParseableRawGroup group : map.values()) {

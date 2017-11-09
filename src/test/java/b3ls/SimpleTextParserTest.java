@@ -6,7 +6,7 @@ import org.junit.Test;
 public class SimpleTextParserTest {
 
     @Test
-    public void exampleOne_flightInformation() {
+    public void exampleOne_flightInformation() throws InvalidRawStringException {
         // Assume the string is "AC1213FRAYUL"
         // This can be defined as:
         //      - Carrier       [2 characters]
@@ -42,7 +42,7 @@ public class SimpleTextParserTest {
     }
 
     @Test
-    public void exampleTwo_addressInformation() {
+    public void exampleTwo_addressInformation() throws InvalidRawStringException {
         // Assume the string is "CRAIG BEN   086-1234567 Made-Up Road   Somewhere   Austria   086-7654321 A.N.Other Rd.  Nowhere     Austria   "
         // This can be defined as:
         //      - Name
@@ -120,7 +120,7 @@ public class SimpleTextParserTest {
 
     // #1
     @Test
-    public void shouldHandleCallToGetNonExistingField() {
+    public void shouldHandleCallToGetNonExistingField() throws InvalidRawStringException {
         RawGroup rawGroup = new RawGroup("FlightInfo");
         rawGroup.addRawFieldParser(
                 new ParseableRawField(
@@ -139,33 +139,20 @@ public class SimpleTextParserTest {
     }
 
     // #2
-    @Test
-    public void shouldReturnGroupSize() {
-        RawGroup rawGroup = new RawGroup("Passenger");
+    public void shouldNotAllowTextStringThatIsSmallerThanExpected() throws InvalidRawStringException {
+        RawGroup customer = new RawGroup("Customer");
+        RawField name = new RawField(10, "Given");
+        RawField surname = new RawField(10, "Surname");
 
-        rawGroup.addRawFieldParser(
-                new ParseableRawField(
-                        new RawField(10, "Name")));
-
-        rawGroup.addRawFieldParser(
-                new ParseableRawField(
-                        new RawField(2, "Age")));
-
-        rawGroup.addRawFieldParser(
-                new ParseableRawField(
-                        new RawField(1, "SomeOtherCode")));
+        customer.addRawFieldParser(new ParseableRawField(name));
+        customer.addRawFieldParser(new ParseableRawField(surname));
 
         SimpleTextParser parser = new SimpleTextParser();
-        parser.addRawGroupParser(new ParseableRawGroup(rawGroup));
+        parser.addRawGroupParser(new ParseableRawGroup(customer));
 
-        String result = parser.parse("JIM JONES 34M");
-        Assert.assertEquals("", result);
+        String result = parser.parse("LILY BREID");
 
-        Assert.assertEquals("JIM JONES ", parser.getItem("Passenger", "Name"));
-        Assert.assertEquals("34", parser.getItem("Passenger", "Age"));
-        Assert.assertEquals("M", parser.getItem("Passenger", "SomeOtherCode"));
-
-        Assert.assertEquals(13, parser.getGroupSize());
 
     }
+
 }
