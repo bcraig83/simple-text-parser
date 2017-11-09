@@ -33,7 +33,7 @@ public class SimpleTextParser implements Parseable {
         return result;
     }
 
-    int getGroupSize(String groupName) {
+    int getGroupSize() {
         int size = 0;
 
         for (ParseableRawGroup group : map.values()) {

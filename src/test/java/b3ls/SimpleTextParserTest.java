@@ -165,7 +165,7 @@ public class SimpleTextParserTest {
         Assert.assertEquals("34", parser.getItem("Passenger", "Age"));
         Assert.assertEquals("M", parser.getItem("Passenger", "SomeOtherCode"));
 
-        Assert.assertEquals(13, parser.getGroupSize("Passenger"));
+        Assert.assertEquals(13, parser.getGroupSize());
 
     }
 }
