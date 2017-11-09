@@ -32,7 +32,7 @@ public class SimpleTextParser implements Parseable {
         try {
             result = map.get(groupName).getValue(itemName);
         } catch (RawFieldDoesNotExistException e) {
-            System.out.println("");
+            System.out.println("Raw field does not exist");
         }
 
         return result;
