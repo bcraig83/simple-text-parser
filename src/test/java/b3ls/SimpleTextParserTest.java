@@ -122,7 +122,9 @@ public class SimpleTextParserTest {
     @Test
     public void shouldHandleCallToGetNonExistingField() {
         RawGroup rawGroup = new RawGroup("FlightInfo");
-        rawGroup.addRawFieldParser(new ParseableRawField(new RawField(2, "AirlineDesignatorOfBoardingPassIssuer")));
+        rawGroup.addRawFieldParser(
+                new ParseableRawField(
+                        new RawField(2, "AirlineDesignatorOfBoardingPassIssuer")));
 
         SimpleTextParser parser = new SimpleTextParser();
         parser.addRawGroupParser(new ParseableRawGroup(rawGroup));
@@ -134,5 +136,36 @@ public class SimpleTextParserTest {
         String resultString = parser.getItem("FlightInfo", "AirlineDesignatorOfBoardingPass");
 
         Assert.assertEquals("", resultString);
+    }
+
+    // #2
+    @Test
+    public void shouldReturnGroupSize() {
+        RawGroup rawGroup = new RawGroup("Passenger");
+
+        rawGroup.addRawFieldParser(
+                new ParseableRawField(
+                        new RawField(10, "Name")));
+
+        rawGroup.addRawFieldParser(
+                new ParseableRawField(
+                        new RawField(2, "Age")));
+
+        rawGroup.addRawFieldParser(
+                new ParseableRawField(
+                        new RawField(1, "SomeOtherCode")));
+
+        SimpleTextParser parser = new SimpleTextParser();
+        parser.addRawGroupParser(new ParseableRawGroup(rawGroup));
+
+        String result = parser.parse("JIM JONES 34M");
+        Assert.assertEquals("", result);
+
+        Assert.assertEquals("JIM JONES ", parser.getItem("Passenger", "Name"));
+        Assert.assertEquals("34", parser.getItem("Passenger", "Age"));
+        Assert.assertEquals("M", parser.getItem("Passenger", "SomeOtherCode"));
+
+        Assert.assertEquals(13, parser.getGroupSize("Passenger"));
+
     }
 }
