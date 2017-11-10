@@ -1,5 +1,6 @@
 package b3ls;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -36,6 +37,15 @@ public class RawGroup {
   }
 
   public Map<String, String> getErrors() {
-    return null;
+
+    Map<String, String> results = new HashMap<>();
+
+    for (ParseableRawField field : map.values()) {
+      if (field.getErrorMessage() != null) {
+        results.put(field.getName(), field.getErrorMessage());
+      }
+    }
+
+    return results;
   }
 }
