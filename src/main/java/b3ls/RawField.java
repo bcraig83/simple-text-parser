@@ -1,6 +1,6 @@
 package b3ls;
 
-public class RawField {
+class RawField {
 
   private String regexPattern;
   private String errorMessage;
@@ -33,15 +33,16 @@ public class RawField {
     return errorMessage;
   }
 
-  public void setErrorMessage(String errorMessage) {
+  void setErrorMessage(String errorMessage) {
     this.errorMessage = errorMessage;
   }
 
-  public String getRegexPattern() {
+  String getRegexPattern() {
     return regexPattern;
   }
 
-  public void setRegexPattern(String regexPattern) {
+  RawField setRegexPattern(String regexPattern) {
     this.regexPattern = regexPattern;
+    return this;
   }
 }

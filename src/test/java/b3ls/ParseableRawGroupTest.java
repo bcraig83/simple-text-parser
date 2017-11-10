@@ -59,5 +59,11 @@ public class ParseableRawGroupTest {
     }
   }
 
+  // #4
+  @Test
+  public void shouldReturnAnErrorWhenRegexDoesNotMatch() {
+    // TODO:
+  }
+
   // TODO: Need to add a test where we try and retrieve something that does not exist.
 }
