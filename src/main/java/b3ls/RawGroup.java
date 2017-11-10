@@ -5,33 +5,37 @@ import java.util.Map;
 
 public class RawGroup {
 
-    private String name;
-    private Map<String, ParseableRawField> map = new LinkedHashMap<>();
+  private String name;
+  private Map<String, ParseableRawField> map = new LinkedHashMap<>();
 
-    public RawGroup(String name) {
-        this.name = name;
+  RawGroup(String name) {
+    this.name = name;
+  }
+
+  void addRawFieldParser(ParseableRawField parser) {
+    map.put(parser.getName(), parser);
+  }
+
+  Map<String, ParseableRawField> getMap() {
+    return map;
+  }
+
+  String getName() {
+    return name;
+  }
+
+  int getSize() {
+
+    int size = 0;
+
+    for (ParseableRawField field : map.values()) {
+      size += field.getSize();
     }
 
-    public void addRawFieldParser(ParseableRawField parser) {
-        map.put(parser.getName(), parser);
-    }
+    return size;
+  }
 
-    public Map<String, ParseableRawField> getMap() {
-        return map;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getSize() {
-
-        int size = 0;
-
-        for (ParseableRawField field : map.values()) {
-            size += field.getSize();
-        }
-
-        return size;
-    }
+  public Map<String, String> getErrors() {
+    return null;
+  }
 }
