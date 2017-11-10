@@ -29,7 +29,7 @@ public class RawField {
     this.contents = contents;
   }
 
-  public String getErrorMessage() {
+  String getErrorMessage() {
     return errorMessage;
   }
 
