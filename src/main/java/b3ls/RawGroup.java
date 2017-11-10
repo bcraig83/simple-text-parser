@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class RawGroup {
+class RawGroup {
 
   private String name;
   private Map<String, ParseableRawField> map = new LinkedHashMap<>();
@@ -13,8 +13,9 @@ public class RawGroup {
     this.name = name;
   }
 
-  void addRawFieldParser(ParseableRawField parser) {
+  RawGroup addRawFieldParser(ParseableRawField parser) {
     map.put(parser.getName(), parser);
+    return this;
   }
 
   Map<String, ParseableRawField> getMap() {
@@ -36,7 +37,7 @@ public class RawGroup {
     return size;
   }
 
-  public Map<String, String> getErrors() {
+  Map<String, String> getErrors() {
 
     Map<String, String> results = new HashMap<>();
 
