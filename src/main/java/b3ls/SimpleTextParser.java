@@ -5,46 +5,47 @@ import java.util.Map;
 
 public class SimpleTextParser implements Parseable {
 
-    private Map<String, ParseableRawGroup> map = new LinkedHashMap<>();
+  private Map<String, ParseableRawGroup> map = new LinkedHashMap<>();
 
-    void addRawGroupParser(ParseableRawGroup parser) {
-        map.put(parser.getName(), parser);
+  SimpleTextParser addRawGroupParser(ParseableRawGroup parser) {
+    map.put(parser.getName(), parser);
+    return this;
+  }
+
+  public String parse(String source) throws InvalidRawStringException {
+
+    if (source.length() < this.getExpectedSize()) {
+      throw new InvalidRawStringException();
     }
 
-    public String parse(String source) throws InvalidRawStringException {
+    String temp = source;
 
-        if (source.length() < this.getExpectedSize()) {
-            throw new InvalidRawStringException();
-        }
-
-        String temp = source;
-
-        for (ParseableRawGroup group : map.values()) {
-            temp = group.parse(temp);
-        }
-
-        return temp;
+    for (ParseableRawGroup group : map.values()) {
+      temp = group.parse(temp);
     }
 
-    String getItem(String groupName, String itemName) {
-        String result = "";
+    return temp;
+  }
 
-        try {
-            result = map.get(groupName).getValue(itemName);
-        } catch (RawFieldDoesNotExistException e) {
-            System.out.println("Raw field does not exist");
-        }
+  String getItem(String groupName, String itemName) {
+    String result = "";
 
-        return result;
+    try {
+      result = map.get(groupName).getValue(itemName);
+    } catch (RawFieldDoesNotExistException e) {
+      System.out.println("Raw field does not exist");
     }
 
-    private int getExpectedSize() {
-        int size = 0;
+    return result;
+  }
 
-        for (ParseableRawGroup group : map.values()) {
-            size += group.getSize();
-        }
+  private int getExpectedSize() {
+    int size = 0;
 
-        return size;
+    for (ParseableRawGroup group : map.values()) {
+      size += group.getSize();
     }
+
+    return size;
+  }
 }

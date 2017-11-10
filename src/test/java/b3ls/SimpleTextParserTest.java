@@ -59,27 +59,21 @@ public class SimpleTextParserTest {
     //          - Town          [12 chars]
     //          - Country       [10 chars]
 
-    RawGroup nameGroup = new RawGroup("Name");
-    RawGroup homeAddress = new RawGroup("HomeAddress");
-    RawGroup workAddress = new RawGroup("WorkAddress");
-
-    nameGroup.addRawFieldParser(new ParseableRawField(new RawField(6, "Surname")));
-    nameGroup.addRawFieldParser(new ParseableRawField(new RawField(6, "Given")));
-
-    homeAddress.addRawFieldParser(new ParseableRawField(new RawField(12, "PhoneNumber")));
-    homeAddress.addRawFieldParser(new ParseableRawField(new RawField(15, "Street")));
-    homeAddress.addRawFieldParser(new ParseableRawField(new RawField(12, "Town")));
-    homeAddress.addRawFieldParser(new ParseableRawField(new RawField(10, "Country")));
-
-    workAddress.addRawFieldParser(new ParseableRawField(new RawField(12, "PhoneNumber")));
-    workAddress.addRawFieldParser(new ParseableRawField(new RawField(15, "Street")));
-    workAddress.addRawFieldParser(new ParseableRawField(new RawField(12, "Town")));
-    workAddress.addRawFieldParser(new ParseableRawField(new RawField(10, "Country")));
-
-    SimpleTextParser parser = new SimpleTextParser();
-    parser.addRawGroupParser(new ParseableRawGroup(nameGroup));
-    parser.addRawGroupParser(new ParseableRawGroup(homeAddress));
-    parser.addRawGroupParser(new ParseableRawGroup(workAddress));
+    // Note; typically, setup like this would be hidden in a factory class.
+    SimpleTextParser parser = new SimpleTextParser()
+        .addRawGroupParser(new ParseableRawGroup(new RawGroup("Name")
+            .addRawFieldParser(new ParseableRawField(new RawField(6, "Surname")))
+            .addRawFieldParser(new ParseableRawField(new RawField(6, "Given")))))
+        .addRawGroupParser(new ParseableRawGroup(new RawGroup("HomeAddress")
+            .addRawFieldParser(new ParseableRawField(new RawField(12, "PhoneNumber")))
+            .addRawFieldParser(new ParseableRawField(new RawField(15, "Street")))
+            .addRawFieldParser(new ParseableRawField(new RawField(12, "Town")))
+            .addRawFieldParser(new ParseableRawField(new RawField(10, "Country")))))
+        .addRawGroupParser(new ParseableRawGroup(new RawGroup("WorkAddress")
+            .addRawFieldParser(new ParseableRawField(new RawField(12, "PhoneNumber")))
+            .addRawFieldParser(new ParseableRawField(new RawField(15, "Street")))
+            .addRawFieldParser(new ParseableRawField(new RawField(12, "Town")))
+            .addRawFieldParser(new ParseableRawField(new RawField(10, "Country")))));
 
     String result = parser.parse(
         "CRAIG BEN   086-1234567 Made-Up Road   Somewhere   Austria   086-7654321 A.N.Other Rd.  Nowhere     Austria   ");
@@ -117,7 +111,6 @@ public class SimpleTextParserTest {
 
   }
 
-  // #1
   @Test
   public void shouldHandleCallToGetNonExistingField() throws InvalidRawStringException {
     RawGroup rawGroup = new RawGroup("FlightInfo");
@@ -136,18 +129,12 @@ public class SimpleTextParserTest {
     Assert.assertEquals("", resultString);
   }
 
-  // #2
   @Test(expected = InvalidRawStringException.class)
   public void shouldNotAllowTextStringThatIsSmallerThanExpected() throws InvalidRawStringException {
-    RawGroup customer = new RawGroup("Customer");
-    RawField name = new RawField(10, "Given");
-    RawField surname = new RawField(10, "Surname");
-
-    customer.addRawFieldParser(new ParseableRawField(name));
-    customer.addRawFieldParser(new ParseableRawField(surname));
-
-    SimpleTextParser parser = new SimpleTextParser();
-    parser.addRawGroupParser(new ParseableRawGroup(customer));
+    SimpleTextParser parser = new SimpleTextParser()
+        .addRawGroupParser(new ParseableRawGroup(new RawGroup("Customer")
+            .addRawFieldParser(new ParseableRawField(new RawField(10, "Given")))
+            .addRawFieldParser(new ParseableRawField(new RawField(10, "Surname")))));
 
     String result = parser.parse("LILY BREID");
   }
