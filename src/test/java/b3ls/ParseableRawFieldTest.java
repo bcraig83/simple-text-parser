@@ -34,6 +34,6 @@ public class ParseableRawFieldTest {
     assertThat(result, is(equalTo("34")));
     assertThat(fixture.getContents(), is(equalTo(null)));
     assertThat(fixture.getErrorMessage(),
-        is(equalTo("Raw string [12] does not match regex pattern [[A-Z]{2}]")));
+        is(equalTo("Raw string 12 does not match regex pattern [A-Z]{2}")));
   }
 }

@@ -17,9 +17,9 @@ public class ParseableRawField implements Parseable {
     String contents = source.substring(0, amountToConsume);
 
     if (!regexMatches(contents)) {
-      rawField.setErrorMessage("Raw string ["
-          + contents + "] does not match regex pattern ["
-          + rawField.getRegexPattern() + "]");
+      rawField.setErrorMessage("Raw string "
+          + contents + " does not match regex pattern "
+          + rawField.getRegexPattern());
     } else {
       rawField.setContents(contents);
     }
