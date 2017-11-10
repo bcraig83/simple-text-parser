@@ -2,7 +2,7 @@ package b3ls;
 
 public class RawField {
 
-  // private String regexPattern; (will come eventually)
+  private String regexPattern;
   private String errorMessage;
   private int size;
   private String name;
@@ -35,5 +35,13 @@ public class RawField {
 
   public void setErrorMessage(String errorMessage) {
     this.errorMessage = errorMessage;
+  }
+
+  public String getRegexPattern() {
+    return regexPattern;
+  }
+
+  public void setRegexPattern(String regexPattern) {
+    this.regexPattern = regexPattern;
   }
 }
