@@ -38,3 +38,15 @@ test:
     paths:
       - build/reports/pitest
 
+pages:
+  stage: deploy
+  dependencies:
+    - test
+  script:
+      - mv build/reports/pitest/ public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - master
