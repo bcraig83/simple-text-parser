@@ -34,4 +34,7 @@ test:
     paths:
       - build
       - .gradle
+    artefacts:
+      paths:
+        - build/reports/pitest
 
